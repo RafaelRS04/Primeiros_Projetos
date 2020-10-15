@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Numeros Pares num Intervalo Customizado</title>
+    </head>
+    <body>
+        <script>
+            function pulaLinha() {
+
+                document.write("<br>");
+            }
+
+            function escreva(texto) {
+
+                document.write(texto);
+                pulaLinha();
+            }
+
+            function verificaNumeros(x, y) {
+
+                while (isNaN(x) || isNaN(y)) {
+                    alert("Por favor, digite apenas números válidos!");
+                    x = parseInt(prompt("Digite o primeiro número"));
+                    y = parseInt(prompt("Digite o segundo número"));
+                }
+
+                if (x > y) {
+                var aux = x;
+                x = y;
+                y = aux;
+                }
+
+                return {x:x, y:y};
+            }
+
+            function pares(x, y) {
+
+                if (x % 2 == 0) {
+                    x += 2
+                } else if (x % 2 == 1 || -1) {
+                    x += 1
+                }
+
+                while (x < y) {
+                    escreva(x);
+                    x += 2
+                }
+            }
+
+            alert("Iremos mostrar todos números pares dentro de um intervalo de números definido por você!");
+
+            var x = parseInt(prompt("Digite o primeiro número"));
+            var y = parseInt(prompt("Digite o segundo número"));
+            var v = verificaNumeros(x, y);
+
+            escreva("<h1>Números pares entre " + v.x + " e " + v.y + "</h1><br><h3>" + v.x + " {</h3>");
+
+            pares(v.x, v.y);
+
+            escreva("<h3>} " + v.y + "</h3>");
+
+            alert("Os números pares entre " + v.x + " e " + v.y + " são:");
+        </script>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+<meta charset="UTF-8">
+
+<script>
+    function pulaLinha() {
+
+        document.write("<br><br>");
+    }
+
+    function escreva(texto) {
+
+        document.write(texto);
+        pulaLinha();
+    }
+
+    function tabuada(numTab, maxMultiplicador) {
+        
+        var multiplicador = 0;
+        while (multiplicador <= maxMultiplicador) {
+            escreva(numTab + " vezes " + multiplicador + " é igual a " + numTab * multiplicador);
+            multiplicador++;
+        }
+    }
+
+    var numTab = parseInt(prompt("Digite a o número principal da tabuada"));
+    var maxMultiplicador = parseInt(prompt("Digite o valor máximo do multiplicador"));
+
+    while(isNaN(numTab) | isNaN(maxMultiplicador)) {
+
+        alert("Por favor, digite números válidos!");
+        numTab = parseInt(prompt("Digite a o número principal da tabuada"));
+        maxMultiplicador = parseInt(prompt("Digite o valor máximo do multiplicador"));
+    }
+
+    tabuada(numTab, maxMultiplicador);
+</script>

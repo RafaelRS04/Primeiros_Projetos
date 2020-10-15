@@ -1,0 +1,87 @@
+<meta charset="UTF-8">
+<title>Calculadora de IMC</title>
+<h1>Calculadora de IMC</h1>
+<strong>Um pouco mais sobre o IMC:</strong> o índice de massa corporal (IMC) é uma medida internacional usada para calcular se uma pessoa está no peso ideal. 
+<br>
+Desenvolvido pelo polímata Lambert Quételet no fim do século XIX, trata-se de um método fácil e rápido para a avaliação do nível de gordura de cada pessoa,
+<br>
+sendo, por isso, um preditor internacional de obesidade adotado pela Organização Mundial da Saúde (OMS). Os valores considerados normais rondam em torno de 
+<br>
+18.5 até 30, sendo valores menores que 18.5 considerados abaixo do ideal, e valores maiores que 30 considerados acima do ideal.
+<br><br>
+<strong>Lembre-se das instruções:</strong> no caso do peso e da altura, se usado um valor decimal, use ponto ao invés de vírgula.
+<br><br> 
+
+<script>
+    function pulaLinha() {
+
+        document.write("<br><br>");
+    }
+
+    function escreva(texto) {
+
+        document.write(texto);
+        pulaLinha();
+    }
+
+    function verificaDados(pesoInformado, alturaInformada) {
+       
+        while (isNaN(pesoInformado) || isNaN(alturaInformada)) {
+        alert("Por favor, digite apenas números nos campos de peso e altura! Caso seja usado um valor decimal, use ponto ao invés de vírgula.");
+        pesoInformado = parseFloat(prompt(nomeUsuario + ", informe o seu peso em Kg"));
+        alturaInformada = parseFloat(prompt(nomeUsuario + ", informe a sua altura em metros"));
+        }
+
+        return {peso:pesoInformado, altura:alturaInformada};
+    }
+
+    function verificaNome(nomeUsuario) {
+
+        while (!nomeUsuario) {
+            alert("Por favor, digite seu nome!");
+            nomeUsuario = prompt("Informe o seu nome neste campo");
+        }
+
+        return nomeUsuario
+    }
+
+    function calculaImc(pesoInformado, alturaInformada) {
+
+        return pesoInformado / alturaInformada ** 2;
+    }
+
+    function mostraCondicaoImc(imcCalculado) {
+
+        if (imcCalculado < 17) {
+            escreva("");
+        } else if (imcCalculado >= 17 && imcCalculado < 18.5){
+            escreva("");
+        } else if (imcCalculado >= 18.5 && imcCalculado < 30) {
+            escreva("");
+        } else if (imcCalculado >= 30 && imcCalculado < 35) {
+            escreva("");
+        } else if (imcCalculado >= 35 && imcCalculado < 40) {
+            escreva("");
+        } else if (imcCalculado > 40) {
+            escreva("");
+        }
+    }
+
+    alert("Calculadora IMC Instruções: Para usar a calculadora, basta digitar as informações necessárias em seus respectivos campos." +
+         " No caso do peso e da altura, se usado um valor decimal, use ponto ao invés de vírgula. Bom uso!");
+
+    var nomeUsuario = prompt("Informe o seu nome");
+    nomeUsuario =  verificaNome(nomeUsuario);
+
+    var pesoInformado = parseFloat(prompt(nomeUsuario + ", informe o seu peso em Kg"));
+    var alturaInformada = parseFloat(prompt(nomeUsuario + ", informe a sua altura em metros"));
+
+    var verificaDados = verificaDados(pesoInformado, alturaInformada);
+    pesoInformado = verificaDados.peso;
+    alturaInformada = verificaDados.altura;
+
+    var imcCalculado = calculaImc(pesoInformado, alturaInformada).toFixed(2);
+    escreva("<hr size=2 /><br>" + nomeUsuario + ", seu IMC é " + imcCalculado);
+
+    mostraCondicaoImc(imcCalculado);
+</script>
