@@ -51,10 +51,11 @@
 
         var resultado = totalIdades / quantidadePessoas;
         
-        if (totalIdades % quantidadePessoas != 0) {
-            return resultado.toFixed(1);
-        } else if (totalIdades % quantidadePessoas == 0) {
-            return resultado;
+        switch (totalIdades % quantidadePessoas != 0) {
+            case true:
+                return resultado.toFixed(1);
+            default:
+                return resultado;
         }
     }
 
