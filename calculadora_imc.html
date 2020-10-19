@@ -22,25 +22,33 @@ sendo, por isso, um preditor internacional de obesidade adotado pela Organizaç�
         pulaLinha();
     }
 
-    function verificaNome(nomeUsuario) {
-
+    function dadosVerificados () {
+        var nomeUsuario = prompt("Informe o seu nome");
+        
         while (!nomeUsuario) {
             alert("Por favor, digite seu nome!");
             nomeUsuario = prompt("Informe o seu nome neste campo");
         }
 
-        return nomeUsuario;
-    }
+        var pesoInformado = prompt(nomeUsuario + ", informe o seu peso em Kg");
+        pesoInformado = parseFloat(pesoInformado.replace(",", "."));
 
-    function verificaDados(pesoInformado, alturaInformada) {
-       
-        while (isNaN(pesoInformado) || isNaN(alturaInformada)) {
-            alert("Por favor, digite apenas números nos campos de peso e altura!");
-            pesoInformado = parseFloat(prompt(nomeUsuario + ", informe o seu peso em Kg"));
-            alturaInformada = parseFloat(prompt(nomeUsuario + ", informe a sua altura em metros"));
+        while (isNaN(pesoInformado)) {
+            alert("Por favor, digite apenas números no campo de peso!");
+            pesoInformado = prompt(nomeUsuario + ", informe novamente o seu peso em Kg");
+            pesoInformado = parseFloat(pesoInformado.replace(",", "."));
         }
 
-        return {peso:pesoInformado, altura:alturaInformada};
+        var alturaInformada = prompt(nomeUsuario + ", informe a sua altura em metros");
+        alturaInformada = parseFloat(alturaInformada.replace(",", "."));
+
+        while (isNaN(alturaInformada)) {
+            alert("Por favor, digite apenas números no campo de altura!");
+            alturaInformada = prompt(nomeUsuario + ", informe a novamente sua altura em metros");
+            alturaInformada = parseFloat(alturaInformada.replace(",", "."));
+        }
+
+        return {nU: nomeUsuario, pI: pesoInformado, aI: alturaInformada};
     }
 
     function calculaImc(pesoInformado, alturaInformada) {
@@ -53,37 +61,32 @@ sendo, por isso, um preditor internacional de obesidade adotado pela Organizaç�
     function mostraCondicaoImc(imcCalculado) {
 
         if (imcCalculado < 17) {
-            escreva("a");
+            escreva("Você está muito abaixo da faixa de peso ideal para a sua altura!<br>Invista em exercícios que gerem hipertrofia muscular e evite o excesso de exercícios aeróbicos. É importante também investir numa alimentação hipercalórica e rica em micronutrientes.<br>Caso não se sinta seguro, procure auxílio médico e um nutricionista.");
         } else if (imcCalculado >= 17 && imcCalculado < 18.5){
-            escreva("b");
+            escreva("Você está abaixo da faixa de peso ideal para a sua altura!<br>Invista em exercícios que gerem hipertrofia muscular e evite o excesso de exercícios aeróbicos. É importante também investir numa alimentação hipercalórica e rica em micronutrientes.<br>Caso não se sinta seguro, procure auxílio médico e um nutricionista.");
         } else if (imcCalculado >= 18.5 && imcCalculado < 25) {
-            escreva("c");
+            escreva("Parabéns, você está na faixa de peso ideal para a sua altura!<br>Caso não pratique exercícios, invista pelo menos 1 hora do seu dia à prática de atividades físicas. Também é importante manter uma alimentação equilibrada e rica em micronutrientes.<br>Caso não se sinta seguro, procure auxílio médico e um nutricionista.");
         } else if (imcCalculado >= 25 && imcCalculado < 30) {
-            escreva("d");
+            escreva("Seu peso está acima da faixa de peso ideal para a sua altura, caracterizando Sobrepeso!<br>Invista principalmente em exercícios aeróbicos e reserve pelo menos 1 hora do seu dia à prática de atividades físicas. É importante que você tenha uma alimentação hipocalórica e rica em micronutrientes.<br>Caso não se sinta seguro, procure auxílio médico e um nutricionista.");
         } else if (imcCalculado >= 30 && imcCalculado < 35) {
-            escreva("e");
+            escreva("Seu peso está acima da faixa de peso ideal para a sua altura, caracterizando Obesidade Nível 1!<br>Nesse caso é recomendado procurar um nutricionista e auxílio médico antes de qualquer coisa.");
         } else if (imcCalculado >= 35 && imcCalculado < 40) {
-            escreva("f");
+            escreva("Seu peso está acima da faixa de peso ideal para a sua altura, caracterizando Obesidade Nível 2 (Severa)!<br>Nesse caso é recomendado procurar um nutricionista e auxílio médico antes de qualquer coisa e o quanto antes.");
         } else if (imcCalculado > 40) {
-            escreva("g, h, infarto, j, k, l ...");
+            escreva("Seu peso está acima da faixa de peso ideal para a sua altura, caracterizando Obesidade Nível 3 (Mórbida)!<br>Nesse caso é recomendado procurar um nutricionista e auxílio médico urgentemente.");
         }
     }
 
-    alert("Calculadora IMC Instruções: Para usar a calculadora, basta digitar as informações necessárias em seus respectivos campos." +
-         " No caso do peso e da altura, se usado um valor decimal, use ponto ao invés de vírgula. Bom uso!");
-
-    var nomeUsuario = prompt("Informe o seu nome");
-    nomeUsuario =  verificaNome(nomeUsuario);
-
-    var pesoInformado = parseFloat(prompt(nomeUsuario + ", informe o seu peso em Kg"));
-    var alturaInformada = parseFloat(prompt(nomeUsuario + ", informe a sua altura em metros"));
-
-    var verificaDados = verificaDados(pesoInformado, alturaInformada);
-    pesoInformado = verificaDados.peso;
-    alturaInformada = verificaDados.altura;
+    alert("Calculadora IMC Instruções: Para usar a calculadora, basta digitar as informações necessárias em seus respectivos campos. Após isso, seu IMC será mostrado junto com a condição. Bom uso!");
+    
+    var dados = dadosVerificados();
+    nomeUsuario = dados.nU;
+    pesoInformado = dados.pI;
+    alturaInformada = dados.aI;
 
     var imcCalculado = calculaImc(pesoInformado, alturaInformada);
-    escreva("<hr size=2 /><br>" + nomeUsuario + ", seu IMC é " + imcCalculado + " kg/m²");
+    escreva("<hr size=2 /><br><strong>" + "Peso Informado: " + pesoInformado + "Kg | Altura Informada: " + alturaInformada + "m</strong>");
+    escreva(nomeUsuario + ", seu IMC é " + imcCalculado + " kg/m²");
 
     mostraCondicaoImc(imcCalculado);
 </script>
