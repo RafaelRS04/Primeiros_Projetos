@@ -7,10 +7,8 @@ Desenvolvido pelo polímata Lambert Quételet no fim do século XIX, trata-se de
 <br>
 sendo, por isso, um preditor internacional de obesidade adotado pela Organização Mundial da Saúde (OMS). Os valores considerados normais rondam em torno de 
 <br>
-18.5 até 30, sendo valores menores que 18.5 considerados abaixo do ideal, e valores maiores que 30 considerados acima do ideal.
+18.5 até 25, sendo valores menores que 18.5 considerados abaixo do ideal, e valores maiores que 25 considerados acima do ideal.
 <br><br>
-<strong>Lembre-se das instruções:</strong> no caso do peso e da altura, se usado um valor decimal, use ponto ao invés de vírgula.
-<br><br> 
 
 <script>
     function pulaLinha() {
@@ -24,17 +22,6 @@ sendo, por isso, um preditor internacional de obesidade adotado pela Organizaç�
         pulaLinha();
     }
 
-    function verificaDados(pesoInformado, alturaInformada) {
-       
-        while (isNaN(pesoInformado) || isNaN(alturaInformada)) {
-        alert("Por favor, digite apenas números nos campos de peso e altura! Caso seja usado um valor decimal, use ponto ao invés de vírgula.");
-        pesoInformado = parseFloat(prompt(nomeUsuario + ", informe o seu peso em Kg"));
-        alturaInformada = parseFloat(prompt(nomeUsuario + ", informe a sua altura em metros"));
-        }
-
-        return {peso:pesoInformado, altura:alturaInformada};
-    }
-
     function verificaNome(nomeUsuario) {
 
         while (!nomeUsuario) {
@@ -42,28 +29,43 @@ sendo, por isso, um preditor internacional de obesidade adotado pela Organizaç�
             nomeUsuario = prompt("Informe o seu nome neste campo");
         }
 
-        return nomeUsuario
+        return nomeUsuario;
+    }
+
+    function verificaDados(pesoInformado, alturaInformada) {
+       
+        while (isNaN(pesoInformado) || isNaN(alturaInformada)) {
+            alert("Por favor, digite apenas números nos campos de peso e altura!");
+            pesoInformado = parseFloat(prompt(nomeUsuario + ", informe o seu peso em Kg"));
+            alturaInformada = parseFloat(prompt(nomeUsuario + ", informe a sua altura em metros"));
+        }
+
+        return {peso:pesoInformado, altura:alturaInformada};
     }
 
     function calculaImc(pesoInformado, alturaInformada) {
 
-        return pesoInformado / alturaInformada ** 2;
+        var resultado = pesoInformado / alturaInformada ** 2;
+
+        return (pesoInformado % alturaInformada ** 2 == 0) ?  resultado : resultado.toFixed(2); 
     }
 
     function mostraCondicaoImc(imcCalculado) {
 
         if (imcCalculado < 17) {
-            escreva("");
+            escreva("a");
         } else if (imcCalculado >= 17 && imcCalculado < 18.5){
-            escreva("");
-        } else if (imcCalculado >= 18.5 && imcCalculado < 30) {
-            escreva("");
+            escreva("b");
+        } else if (imcCalculado >= 18.5 && imcCalculado < 25) {
+            escreva("c");
+        } else if (imcCalculado >= 25 && imcCalculado < 30) {
+            escreva("d");
         } else if (imcCalculado >= 30 && imcCalculado < 35) {
-            escreva("");
+            escreva("e");
         } else if (imcCalculado >= 35 && imcCalculado < 40) {
-            escreva("");
+            escreva("f");
         } else if (imcCalculado > 40) {
-            escreva("");
+            escreva("g, h, infarto, j, k, l ...");
         }
     }
 
@@ -80,8 +82,8 @@ sendo, por isso, um preditor internacional de obesidade adotado pela Organizaç�
     pesoInformado = verificaDados.peso;
     alturaInformada = verificaDados.altura;
 
-    var imcCalculado = calculaImc(pesoInformado, alturaInformada).toFixed(2);
-    escreva("<hr size=2 /><br>" + nomeUsuario + ", seu IMC é " + imcCalculado);
+    var imcCalculado = calculaImc(pesoInformado, alturaInformada);
+    escreva("<hr size=2 /><br>" + nomeUsuario + ", seu IMC é " + imcCalculado + " kg/m²");
 
     mostraCondicaoImc(imcCalculado);
 </script>
