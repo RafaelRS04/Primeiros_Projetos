@@ -1,0 +1,24 @@
+<meta charset="UTF-8">
+<label for="inputPeso">Peso: </label><br>
+<input type="text" id="inputPeso" name="inputPeso">
+<br>
+<label for="inputAltura">Altura:</label><br>
+<input type="text" id="inputAltura" name="inputAltura">
+<br><br>
+<button>Mostra</button>
+<br><br>
+<output name="outputResultado"></output>
+
+<script>
+    function teste() {
+
+        outputResultado.value = (inputPeso.value / inputAltura.value ** 2) + "Kg/m²";
+    }
+
+    var inputPeso = document.querySelector("[name='inputPeso']");
+    var inputAltura = document.querySelector("[name='inputAltura']");
+    var outputResultado = document.querySelector("[name='outputResultado']");
+    var botao = document.querySelector("button");
+
+    botao.onclick = teste;
+</script>
