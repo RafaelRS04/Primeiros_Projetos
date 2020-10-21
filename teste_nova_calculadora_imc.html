@@ -1,9 +1,9 @@
 <meta charset="UTF-8">
 <label for="inputPeso">Peso: </label><br>
-<input type="text" id="inputPeso" name="inputPeso">
+<input type="number" id="inputPeso" name="inputPeso">
 <br>
 <label for="inputAltura">Altura:</label><br>
-<input type="text" id="inputAltura" name="inputAltura">
+<input type="number" id="inputAltura" name="inputAltura">
 <br><br>
 <button>Mostra</button>
 <br><br>
@@ -12,7 +12,15 @@
 <script>
     function teste() {
 
-        outputResultado.value = (inputPeso.value / inputAltura.value ** 2) + "Kg/m²";
+        if (inputPeso.value && inputAltura.value && inputAltura.value != 0) {            
+            inputPeso.value = parseFloat(inputPeso.value.replace(",","."));
+            inputAltura.value = parseFloat(inputAltura.value.replace(",","."));
+            var resultado = (inputPeso.value / inputAltura.value ** 2) + "Kg/m²";
+            return outputResultado.value = (inputPeso.value % inputAltura.value ** 2 == 0) ? resultado : resultado.toFixed(2);
+        } else {
+            alert("Os números digitados são inválidos. Tente novamente!");
+            (!inputPeso.value) ? inputPeso.focus() : inputAltura.focus(); 
+        }
     }
 
     var inputPeso = document.querySelector("[name='inputPeso']");
