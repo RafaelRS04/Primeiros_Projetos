@@ -15,8 +15,8 @@
         if (inputPeso.value && inputAltura.value && inputAltura.value != 0) {            
             inputPeso.value = parseFloat(inputPeso.value.replace(",","."));
             inputAltura.value = parseFloat(inputAltura.value.replace(",","."));
-            var resultado = (inputPeso.value / inputAltura.value ** 2) + "Kg/m²";
-            return outputResultado.value = (inputPeso.value % inputAltura.value ** 2 == 0) ? resultado : resultado.toFixed(2);
+            var resultado = (inputPeso.value / inputAltura.value ** 2);
+            return outputResultado.value = (inputPeso.value % inputAltura.value ** 2 == 0 ? resultado : resultado.toFixed(2)) + "Kg/m²";
         } else {
             alert("Os números digitados são inválidos. Tente novamente!");
             (!inputPeso.value) ? inputPeso.focus() : inputAltura.focus(); 
@@ -28,5 +28,6 @@
     var outputResultado = document.querySelector("[name='outputResultado']");
     var botao = document.querySelector("button");
 
+    inputPeso.focus();
     botao.onclick = teste;
 </script>
