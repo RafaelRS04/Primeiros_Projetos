@@ -1,0 +1,70 @@
+<meta charset="UTF-8">
+<title>Calculadora de IMC</title>
+<h1>Calculadora de IMC</h1>
+<strong>Um pouco mais sobre o IMC:</strong> o índice de massa corporal (IMC) é uma medida internacional usada para calcular se uma pessoa está no peso ideal. 
+<br>
+Desenvolvido pelo polímata Lambert Quételet no fim do século XIX, trata-se de um método fácil e rápido para a avaliação do nível de gordura de cada pessoa,
+<br>
+sendo, por isso, um preditor internacional de obesidade adotado pela Organização Mundial da Saúde (OMS). Os valores considerados normais rondam em torno de 
+<br>
+18.5 até 25, sendo valores menores que 18.5 considerados abaixo do ideal, e valores maiores que 25 considerados acima do ideal.
+<br><br><hr size=2 /><br>
+<label for="inputPeso">Peso: </label><br>
+<input type="number" id="inputPeso" name="inputPeso">
+<br>
+<label for="inputAltura">Altura:</label><br>
+<input type="number" id="inputAltura" name="inputAltura">
+<br><br>
+<button>Calcular</button>
+<br><br>
+<output name="outputResultado"></output>
+<br><br>
+<output name="outputCondicao"></output>
+
+<script>
+    function calculaImc() {
+
+        if (inputPeso.value && inputAltura.value && inputAltura.value != 0) {            
+            inputPeso.value = inputPeso.value.replace(",",".");
+            inputAltura.value = inputAltura.value.replace(",",".");
+            inputPeso.value *= (inputPeso.value < 0 ? -1 : 1);
+            inputAltura.value *= (inputAltura.value < 0 ? -1 : 1);
+
+            var resultado = (inputPeso.value / inputAltura.value ** 2);
+            mostraCondicaoImc(resultado);
+
+            return outputResultado.value = (inputPeso.value % inputAltura.value ** 2 == 0 ? resultado : resultado.toFixed(2)) + "Kg/m²";
+        } else {
+            alert("Erro: verifique se todos campos estão preenchidos e tente novamente!");
+            (!inputPeso.value) ? inputPeso.focus() : inputAltura.focus(); 
+        }
+    }
+
+    function mostraCondicaoImc(imcCalculado) {
+
+        if (imcCalculado < 17) {
+            outputCondicao.value = ("Você está muito abaixo da faixa de peso ideal para a sua altura! Invista em exercícios que gerem hipertrofia muscular e evite o excesso de exercícios aeróbicos. É importante também investir numa alimentação hipercalórica e rica em micronutrientes. Caso não se sinta seguro, procure auxílio médico e um nutricionista.");
+        } else if (imcCalculado >= 17 && imcCalculado < 18.5){
+            outputCondicao.value = ("Você está abaixo da faixa de peso ideal para a sua altura! Invista em exercícios que gerem hipertrofia muscular e evite o excesso de exercícios aeróbicos. É importante também investir numa alimentação hipercalórica e rica em micronutrientes. Caso não se sinta seguro, procure auxílio médico e um nutricionista.");
+        } else if (imcCalculado >= 18.5 && imcCalculado < 25) {
+            outputCondicao.value = ("Parabéns, você está na faixa de peso ideal para a sua altura! Caso não pratique exercícios, invista pelo menos 1 hora do seu dia à prática de atividades físicas. Também é importante manter uma alimentação equilibrada e rica em micronutrientes. Caso não se sinta seguro, procure auxílio médico e um nutricionista.");
+        } else if (imcCalculado >= 25 && imcCalculado < 30) {
+            outputCondicao.value = ("Seu peso está acima da faixa de peso ideal para a sua altura, caracterizando Sobrepeso! Invista principalmente em exercícios aeróbicos e reserve pelo menos 1 hora do seu dia à prática de atividades físicas. É importante que você tenha uma alimentação hipocalórica e rica em micronutrientes. Caso não se sinta seguro, procure auxílio médico e um nutricionista.");
+        } else if (imcCalculado >= 30 && imcCalculado < 35) {
+            outputCondicao.value = ("Seu peso está acima da faixa de peso ideal para a sua altura, caracterizando Obesidade Nível 1! Nesse caso é recomendado procurar um nutricionista e auxílio médico antes de qualquer coisa.");
+        } else if (imcCalculado >= 35 && imcCalculado < 40) {
+            outputCondicao.value = ("Seu peso está acima da faixa de peso ideal para a sua altura, caracterizando Obesidade Nível 2 (Severa)! Nesse caso é recomendado procurar um nutricionista e auxílio médico antes de qualquer coisa e o quanto antes.");
+        } else if (imcCalculado > 40) {
+            outputCondicao.value = ("Seu peso está acima da faixa de peso ideal para a sua altura, caracterizando Obesidade Nível 3 (Mórbida)! Nesse caso é recomendado procurar um nutricionista e auxílio médico urgentemente.");
+        }
+    }
+
+    var inputPeso = document.querySelector("[name='inputPeso']");
+    var inputAltura = document.querySelector("[name='inputAltura']");
+    var outputResultado = document.querySelector("[name='outputResultado']");
+    var outputCondicao = document.querySelector("[name='outputCondicao']");
+    var botao = document.querySelector("button");
+
+    inputPeso.focus();
+    botao.onclick = calculaImc;
+</script>
