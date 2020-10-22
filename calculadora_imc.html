@@ -42,8 +42,8 @@ sendo, por isso, um preditor internacional de obesidade adotado pela Organizaç�
         var alturaInformada = prompt(nomeUsuario + ", informe a sua altura em metros");
         alturaInformada = parseFloat(alturaInformada.replace(",", "."));
 
-        while (isNaN(alturaInformada)) {
-            alert("Por favor, digite apenas números no campo de altura!");
+        while (isNaN(alturaInformada) || alturaInformada <= 0) {
+            alert("Por favor, digite apenas números válidos e maiores que zero no campo de altura!");
             alturaInformada = prompt(nomeUsuario + ", informe a novamente sua altura em metros");
             alturaInformada = parseFloat(alturaInformada.replace(",", "."));
         }
