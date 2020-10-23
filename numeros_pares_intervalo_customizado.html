@@ -3,63 +3,74 @@
         <meta charset="UTF-8">
         <title>Numeros Pares num Intervalo Customizado</title>
     </head>
-    <body>
+    <body style="background-color: lavender;">
+        <form id="dados" name="dados">
+            <label for="inputNumero1" style="color: SlateBlue">Primeiro Número:</label><br>
+            <input type="number" id="inputNumero1" name="inputNumero1" style="background-color: azure"></input><br><br>
+            <label for="inputNumero2" style="color: SlateBlue">Último Número:</label><br>
+            <input type="number" id="inputNumero2" name="inputNumero2" style="background-color: azure"></input>
+        </form>
+        <button id="calcularIntervalo" name="calcularIntervalo" type="button" style="cursor: pointer" form="dados" onclick="iniciaPares()">Calcular Intervalo</button>
+        <button id="limpar" name="limpar" type="reset" style="cursor: pointer" form="dados" onclick="inputNumero1.focus()">Limpar</button><br>
+        <button id="limparResultado" name="limparResultado" type="button" style="cursor: pointer; width: 180;" onclick="limparResultado()">Limpar Resultado</button><br><br>
+        <hr size="2" color="slateBlue">
+        <output name="outputResultado"></output>
         <script>
-            function pulaLinha() {
+            function isNumber(numero) {
 
-                document.write("<br>");
+                return (typeof numero == "number" && isFinite(numero) ? true : false);
             }
+            
+            function iniciaPares() {
 
-            function escreva(texto) {
+                var value1 = parseInt(inputNumero1.value);
+                var value2 = parseInt(inputNumero2.value);
 
-                document.write(texto);
-                pulaLinha();
-            }
-
-            function verificaNumeros(x, y) {
-
-                while (isNaN(x) || isNaN(y)) {
-                    alert("Por favor, digite apenas números válidos!");
-                    x = parseInt(prompt("Digite o primeiro número"));
-                    y = parseInt(prompt("Digite o segundo número"));
+                if (value1 > value2) {
+                var auxiliar = value1;
+                value1 = value2;
+                value2 = auxiliar;
+                inputNumero1.value = value1;
+                inputNumero2.value = value2;
                 }
 
-                if (x > y) {
-                var aux = x;
-                x = y;
-                y = aux;
-                }
-
-                return {x:x, y:y};
-            }
-
-            function pares(x, y) {
-
-                if (x % 2 == 0) {
-                    x += 2
-                } else if (x % 2 == 1 || -1) {
-                    x += 1
-                }
-
-                while (x < y) {
-                    escreva(x);
-                    x += 2
+                if (isNumber(value1) && isNumber(value2)) {
+                    pares(value1, value2);
+                } else {
+                    alert("Erro: verifique se todos campos estão preenchidos e tente novamente!");
+                    (isNumber(value1) ? inputNumero2.focus() : inputNumero1.focus());
                 }
             }
 
-            alert("Iremos mostrar todos números pares dentro de um intervalo de números definido por você!");
+            function pares(value1, value2) {
 
-            var x = parseInt(prompt("Digite o primeiro número"));
-            var y = parseInt(prompt("Digite o segundo número"));
-            var v = verificaNumeros(x, y);
+                resultado.innerHTML = ("<h1>Os números pares entre " + value1 + " e " + value2 + " são:</h1><h3>" + value1 + " {</h3>");
 
-            escreva("<h1>Números pares entre " + v.x + " e " + v.y + "</h1><br><h3>" + v.x + " {</h3>");
+                if (value1 % 2 == 0) {
+                    value1 += 2;
+                } else if (value1 % 2 == 1 || -1) {
+                    value1 += 1;
+                }
 
-            pares(v.x, v.y);
+                while (value1 < value2) {
+                    resultado.innerHTML += (value1 + "<br>");
+                    value1 += 2;
+                }
 
-            escreva("<h3>} " + v.y + "</h3>");
+                resultado.innerHTML += ("<h3>} " + value2 + "</h3>");
+            }
 
-            alert("Os números pares entre " + v.x + " e " + v.y + " são:");
+            function limparResultado() {
+
+                resultado.innerHTML = "";
+                (isNumber(parseInt(inputNumero1.value)) ? inputNumero2.focus() : inputNumero1.focus());
+            }
+
+            var inputNumero1 = document.querySelector("[name='inputNumero1']");
+            var inputNumero2 = document.querySelector("[name='inputNumero2']");
+            var resultado = document.querySelector("[name='outputResultado']");
+
+            inputNumero1.focus();
         </script>
     </body>
 </html>
