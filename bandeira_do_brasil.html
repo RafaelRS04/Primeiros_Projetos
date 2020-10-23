@@ -1,0 +1,100 @@
+<canvas name="screen" width="600" height="400"></canvas>
+
+<script>
+    var tela = document.querySelector("[name='screen']");
+    var pincel = tela.getContext("2d");
+
+    pincel.fillStyle = "forestGreen";
+    pincel.fillRect(0, 0, 600, 400);
+
+    pincel.fillStyle = "gold";
+    pincel.beginPath();
+    pincel.moveTo(300, 40);
+    pincel.lineTo(40, 200);
+    pincel.lineTo(300, 360);
+    pincel.lineTo(560, 200);
+    pincel.fill();
+
+    pincel.fillStyle = "midnightBlue";
+    pincel.beginPath();
+    pincel.arc(300, 200, 105, 0, 2 * 3.14);
+    pincel.fill();
+
+    pincel.fillStyle = "#F0FFFF";
+    pincel.beginPath();
+    pincel.moveTo(207, 150);
+    pincel.lineTo(405, 200);
+    pincel.lineTo(403, 220);
+    pincel.lineTo(199, 170);
+    pincel.fill();
+</script>
+
+<!-- Hino Nacional do Brasil
+Letra de Joaquim Osório Duque Estrada
+Música de Francisco Manuel da Silva
+
+Parte I
+
+Ouviram do Ipiranga as margens plácidas
+De um povo heroico o brado retumbante
+E o sol da liberdade, em raios fúlgidos
+Brilhou no céu da pátria nesse instante
+
+Se o penhor dessa igualdade
+Conseguimos conquistar com braço forte
+Em teu seio, ó liberdade
+Desafia o nosso peito a própria morte!
+
+Ó Pátria amada
+Idolatrada
+Salve! Salve!
+
+Brasil, um sonho intenso, um raio vívido
+De amor e de esperança à terra desce
+Se em teu formoso céu, risonho e límpido
+A imagem do Cruzeiro resplandece
+
+Gigante pela própria natureza
+És belo, és forte, impávido colosso
+E o teu futuro espelha essa grandeza
+
+Terra adorada
+Entre outras mil
+És tu, Brasil
+Ó Pátria amada!
+Dos filhos deste solo és mãe gentil
+Pátria amada
+Brasil!
+
+Parte II
+
+Deitado eternamente em berço esplêndido
+Ao som do mar e à luz do céu profundo
+Fulguras, ó Brasil, florão da América
+Iluminado ao sol do Novo Mundo!
+
+Do que a terra, mais garrida
+Teus risonhos, lindos campos têm mais flores
+Nossos bosques têm mais vida
+Nossa vida no teu seio mais amores
+
+Ó Pátria amada
+Idolatrada
+Salve! Salve!
+
+Brasil, de amor eterno seja símbolo
+O lábaro que ostentas estrelado
+E diga o verde-louro dessa flâmula
+Paz no futuro e glória no passado
+
+Mas, se ergues da justiça a clava forte
+Verás que um filho teu não foge à luta
+Nem teme, quem te adora, a própria morte
+
+Terra adorada
+Entre outras mil
+És tu, Brasil
+Ó Pátria amada!
+Dos filhos deste solo és mãe gentil
+Pátria amada
+Brasil! -->
