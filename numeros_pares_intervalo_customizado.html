@@ -4,15 +4,12 @@
         <title>Numeros Pares num Intervalo Customizado</title>
     </head>
     <body style="background-color: lavender;">
-        <form id="dados" name="dados">
-            <label for="inputNumero1" style="color: SlateBlue">Primeiro Número:</label><br>
-            <input type="number" id="inputNumero1" name="inputNumero1" style="background-color: azure"></input><br><br>
-            <label for="inputNumero2" style="color: SlateBlue">Último Número:</label><br>
-            <input type="number" id="inputNumero2" name="inputNumero2" style="background-color: azure"></input>
-        </form>
-        <button id="calcularIntervalo" name="calcularIntervalo" type="button" style="cursor: pointer" form="dados" onclick="iniciaPares()">Calcular Intervalo</button>
-        <button id="limpar" name="limpar" type="reset" style="cursor: pointer" form="dados" onclick="inputNumero1.focus()">Limpar</button><br>
-        <button id="limparResultado" name="limparResultado" type="button" style="cursor: pointer; width: 180;" onclick="limparResultado()">Limpar Resultado</button><br><br>
+        <label for="inputNumero1" style="color: SlateBlue">Primeiro Número:</label><br>
+        <input type="number" id="inputNumero1" name="inputNumero1" style="background-color: azure"></input><br><br>
+        <label for="inputNumero2" style="color: SlateBlue">Último Número:</label><br>
+        <input type="number" id="inputNumero2" name="inputNumero2" style="background-color: azure"></input><br><br>
+        <button id="calcularIntervalo" name="calcularIntervalo" style="cursor: pointer" onclick="iniciaPares()">Calcular Intervalo</button>
+        <button id="limpar" name="limpar" style="cursor: pointer" onclick="limparTudo()">Limpar</button><br><br>
         <hr size="2" color="slateBlue">
         <output name="outputResultado"></output>
         <script>
@@ -48,7 +45,7 @@
 
                 if (value1 % 2 == 0) {
                     value1 += 2;
-                } else if (value1 % 2 == 1 || -1) {
+                } else if (value1 % 2 != 0) {
                     value1 += 1;
                 }
 
@@ -60,10 +57,12 @@
                 resultado.innerHTML += ("<h3>} " + value2 + "</h3>");
             }
 
-            function limparResultado() {
+            function limparTudo() {
 
-                resultado.innerHTML = "";
-                (isNumber(parseInt(inputNumero1.value)) ? inputNumero2.focus() : inputNumero1.focus());
+                inputNumero1.value = "";
+                inputNumero2.value = "";
+                resultado.value = "";
+                inputNumero1.focus();
             }
 
             var inputNumero1 = document.querySelector("[name='inputNumero1']");
