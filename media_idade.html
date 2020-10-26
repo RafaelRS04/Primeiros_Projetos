@@ -1,70 +1,45 @@
-<meta charset="UTF-8">
-<title>Cálculo Média das Idades</title>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Calculadora de Média de Idades</title>
+    </head>
+    <body style="text-align: center; background-color: lavender;">
+        <h1>Calculadora de Média de Idades</h1>
+        <label for="inputQuantidadePessoas">Quantidade de Pessoas:</label><br>
+        <input id="inputQuantidadePessoas" name="inputQuantidadePessoas" style="margin-top: 2; margin-bottom: 5" type="number" min="2" step="1"><br>
+        <label for="inputIdades">Idades:</label><br>
+        <input id="inputIdades" name="inputIdades" style="margin-top: 2;margin-bottom: 5" type="number" min="0" step="1"><br>
+        <output name="outputIdades" ></output><br>
+        <button id="adicionar" name="adicionar" style="margin-top: 5" onclick="pushIdade()">Adicionar</button>
+        <button id="remover" name="remover" style="margin-top: 5" onclick="idades.splice(idades.length - 1)">Remover</button><br>
+        <button id="calcular" name="calcular" style="margin-top: 5; margin-bottom: 5">Calcular</button><br>
+        <output name="outputResultado">a</output><br>
+        <hr size="2"/>
+        <script>
+            function isNumber(numero) {
 
-<script>
-    function pulaLinha() {
+                return (typeof numero == "number" && isFinite(numero) ? true : false);
+            }
 
-        document.write("<br><br>");
-    }
+            function pushIdade() {
 
-    function escreva(texto) {
+                var valorIdade = parseInt(inputIdades.value);
 
-        document.write(texto);
-        pulaLinha();
-    }
+                if (isNumber(valorIdade) && valorIdade >= 0) {
+                    idades.push(valorIdade);
+                    outputIdades.innerHTML = "<strong>Idades = [" + idades + "]</strong>";
+                } else {
+                    alert("Digite apenas números iguais ou maiores que zero no campo de idades!");
+                }
+            }
 
-    function quantidadePessoas() {
+            var inputQuantidadePessoas = document.querySelector("[name='inputQuantidadePessoas']");
+            var inputIdades = document.querySelector("[name='inputIdades']");
+            var outputIdades = document.querySelector("[name='outputIdades']");
+            var outputResultado = document.querySelector("[name='outputResultado']");
 
-        var quantidadePessoas = parseInt(prompt("Informe a quantidade de pessoas"));
 
-        while (isNaN(quantidadePessoas) || quantidadePessoas <= 1) {
-            alert("Digite apenas números válidos e maiores que um!");
-            quantidadePessoas = parseInt(prompt("Informe a quantidade de pessoas"));
-        }
-
-        return quantidadePessoas
-    }
-
-    function verificaIdade(idade, contadorPessoa) {
-
-        while (isNaN(idade) || idade < 0) {
-            alert("Número inválido. Por favor, redigite a idade da " + contadorPessoa + "° pessoa!");
-            idade = parseInt(prompt("Informe novamente a idade da " + contadorPessoa + "° pessoa"));
-        }
-        
-        return idade;
-    }
-
-    function calculaMediaIdades(quantidadePessoas) {
-
-        var contador = 0;
-        var contadorPessoa = 1;
-        var totalIdades = 0;
-
-        while (contador < quantidadePessoas) {
-            var idade = parseInt(prompt("Informe a idade da " + contadorPessoa + "° pessoa"));
-            idade = verificaIdade(idade, contadorPessoa); 
-            totalIdades += idade;
-            contadorPessoa++;
-            contador++;
-        }
-
-        var resultado = totalIdades / quantidadePessoas;
-        
-        switch (totalIdades % quantidadePessoas != 0) {
-            case true:
-                return resultado.toFixed(1);
-            default:
-                return resultado;
-        }
-    }
-
-    alert("Aviso: a quantidade de pessoas informada deve se maior que um, e as idades "
-     + "maior ou igual a zero para o funcionamento correto do programa. Caso contrário, "
-      + "erros serão exibidos na tela!");
-
-    var quantidadePessoas = quantidadePessoas();
-    var mediaIdades = calculaMediaIdades(quantidadePessoas);
-
-    escreva("A média das idades das " + quantidadePessoas + " pessoas é " + mediaIdades + " anos.");
-</script>
+            var idades = [];
+        </script>
+    </body>
+</html>
