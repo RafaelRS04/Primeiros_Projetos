@@ -1,18 +1,20 @@
+<!DOCTYPE HTML>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Calculadora de Média de Idades</title>
     </head>
-    <body style="text-align: center; background-color: whitesmoke;">
+    <body style="text-align: center; background-color: whitesmoke">
         <h1>Calculadora de Média de Idades</h1>
-        <label for="inputIdades">Idades:</label><br>
-        <input id="inputIdades" name="inputIdades" style="margin-top: 2;margin-bottom: 5" type="number" min="0" step="1"><br>
-        <output name="outputIdades" ></output><br>
-        <button id="adicionar" name="adicionar" style="margin-top: 5" onclick="pushIdade()">Adicionar</button>
-        <button id="remover" name="remover" style="margin-top: 5" onclick="removerIdade()">Remover</button><br>
-        <button id="calcular" name="calcular" style="margin-top: 5; margin-bottom: 5" onclick="calcularMedia()">Calcular</button><br>
-        <output name="outputResultado"></output><br>
-        <hr size="2" color="powderblue" onclick="limparTudo()"/>
+        <label for="inputIdades" style="font-size: 16px">Idades:</label><br>
+        <input id="inputIdades" name="inputIdades" style="margin-top: 2px; margin-bottom: 5px; font-size: 16px" type="number" min="0" step="1"><br>
+        <output name="outputIdades" style="font-size: 16px"></output><br>
+        <button id="adicionar" name="adicionar" style="margin-top: 5px; font-size: 13px; cursor: pointer" onclick="pushIdade()">Adicionar</button>
+        <button id="remover" name="remover" style="margin-top: 5px; font-size: 13px; cursor: pointer" onclick="removerIdade()">Remover</button><br>
+        <button id="calcular" name="calcular" style="margin-top: 5px; margin-bottom: 5px; font-size: 13px; cursor: pointer" onclick="calcularMedia()">Calcular</button><br>
+        <output name="outputResultado" style="font-size: 16px"></output><br>
+        <hr size="2" color="powderblue"/>
+        <strong style="font-size: 13px; cursor: pointer" onclick="limparTudo()">Reset</strong>
         <script>
             function isNumber(numero) {
 
@@ -30,6 +32,7 @@
                     inputIdades.focus();
                 } else {
                     alert("Digite apenas números iguais ou maiores que zero no campo de idades!");
+                    inputIdades.value = "";
                     inputIdades.focus();
                 }
             }
